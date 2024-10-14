@@ -1,0 +1,24 @@
+-- Create table for Account
+USE mydatabase;
+CREATE TABLE Account (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    balance DECIMAL(15, 2) NOT NULL,
+    available_credit DECIMAL(15, 2) NOT NULL
+);
+
+-- Create table for Beneficiary
+CREATE TABLE Beneficiary (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    account_id BIGINT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE
+);
+
+-- Create table for Transfer
+CREATE TABLE Transfer (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    account_id BIGINT NOT NULL,
+    amount DECIMAL(15, 2) NOT NULL,
+    transfer_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE
+);
