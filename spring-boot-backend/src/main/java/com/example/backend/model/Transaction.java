@@ -1,9 +1,6 @@
 package com.example.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,6 +15,9 @@ public class Transaction {
     private String accountNumber;
     private String beneficiaryAccountNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
     // Constructors, getters, and setters
 
     public Transaction() {
